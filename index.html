@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Generador</title>
+</head>
+
+<body>
+    <div class="background-blur"></div>
+
+    <div class="container">
+        <!-- Sección 1 -->
+        <section id="section1" class="section active">
+            <img id="titulo-logo" src="titulo.png"; 
+
+            <!-- ID -->
+            <div class="input-container">
+                <img src="logowhite.png" class="input-icon" alt="eFootball icon" />
+                <input type="text" id="userId" placeholder="Enter your ID" class="input" />
+            </div>
+
+            <!-- Coins -->
+            <div class="input-container">
+                <img src="fc3.png" class="input-icon moneda-1" alt="Coin icon" />
+                <input type="number" id="amountCoins" placeholder="Enter Fc Points" class="input" />
+            </div>
+
+            <!-- GP -->
+            <div class="input-container">
+                <img src="fc1.png" class="input-icon moneda-1" alt="GP icon" />
+                <input type="number" id="amountGP" placeholder="Enter Coins" class="input" />
+            </div>
+
+            <button id="sendBtn" class="btn">Send</button>
+            <div class="spinner" id="spinner"></div>
+
+            <div class="platforms">
+                <button class="mini-btn">Windows</button>
+                <button class="mini-btn">Apple</button>
+                <button class="mini-btn">Android</button>
+            </div>
+        </section>
+
+        <!-- Sección 2 -->
+        <section id="section2" class="section">
+            <h1 class="congratu">Congratulations</h1>
+
+            <!-- Coin girando -->
+            <div class="reward-box">
+                <img src="fc3.png" alt="Coin" class="coin spin" />
+                <p class="amount-display">
+                    <span id="displayCoins"></span> <span class="coins-text">Fc Points</span>
+                </p>
+            </div>
+
+            <!-- GP girando -->
+            <div class="reward-box">
+                <img src="fc1.png" alt="GP" class="coin spin" />
+                <p class="amount-display">
+                    <span id="displayGP"></span> <span class="coins-text">Coins</span>
+                </p>
+            </div>
+
+            <button id="resendBtn" class="btn">Send Again</button>
+        </section>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
