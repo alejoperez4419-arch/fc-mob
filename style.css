@@ -6,16 +6,18 @@
     font-family: 'Poppins', sans-serif;
 }
 
+/* === FONDO === */
 body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('fondo.png') no-repeat center center fixed;
+    background: url('fondo.webp') no-repeat center center fixed;
     background-size: cover;
     position: relative;
     overflow: hidden;
     padding: 20px;
+    background-color: #07000f;
 }
 
 /* === EFECTO DE DESENFOQUE === */
@@ -32,17 +34,16 @@ body {
 .container {
     position: relative;
     z-index: 1;
-    background: white;
-    border: 2px solid rgba(0, 200, 255, 0.6);
+    background: rgba(15, 0, 25, 0.95);
+    border: 2px solid rgba(255, 0, 100, 0.7);
     border-radius: 20px;
     padding: 35px 28px;
     width: 100%;
     max-width: 360px;
     text-align: center;
-    color: #dffaff;
-    /* Blanco azulado */
-    box-shadow: 0 0 25px rgba(0, 200, 255, 0.5),
-        inset 0 0 10px rgba(0, 200, 255, 0.1);
+    color: #ffe6ff;
+    box-shadow: 0 0 25px rgba(255, 0, 150, 0.6),
+        inset 0 0 10px rgba(200, 0, 255, 0.2);
 }
 
 #titulo-logo {
@@ -72,14 +73,13 @@ body {
     text-align: center;
     font-size: 1rem;
     outline: none;
-    color: #e8faff;
-    background: rgba(10, 40, 60, 0.8);
-    /* Azul petróleo */
-    box-shadow: inset 0 0 8px rgba(0, 180, 255, 0.4);
+    color: #ffe6ff;
+    background: rgba(40, 0, 70, 0.9);
+    box-shadow: inset 0 0 10px rgba(255, 0, 200, 0.5);
 }
 
 .input::placeholder {
-    color: #9ed6ff;
+    color: #ff9be6;
 }
 
 .input-icon {
@@ -100,36 +100,36 @@ body {
 .btn {
     width: 100%;
     padding: 12px;
-    background: #cafa50;
+    background: linear-gradient(90deg, #ff0055, #9900ff);
     border: none;
     border-radius: 8px;
-    color: rgb(0, 0, 0);
+    color: white;
     font-weight: bold;
     font-size: 1rem;
     cursor: pointer;
     transition: 0.3s;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+    box-shadow: 0 0 15px rgba(255, 0, 150, 0.7);
 }
 
 .btn:hover {
-    background: linear-gradient(90deg, #00eaff, #0040ff);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
+    background: linear-gradient(90deg, #ff66a3, #cc66ff);
+    box-shadow: 0 0 20px rgba(255, 100, 255, 1);
 }
 
 #sendBtn {
-    color: black;
+    color: white;
     font-weight: bold;
-    text-shadow: 1px 1px 20px;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
 }
 
 /* === SPINNER === */
 .spinner {
     display: none;
     margin: 15px auto 0;
-    border: 4px solid rgba(255, 255, 255, 0.2);
-    border-top: 4px solid #00eaff;
+    border: 4px solid rgba(255, 255, 255, 0.15);
+    border-top: 4px solid #ff00cc;
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -162,17 +162,17 @@ body {
     padding: 6px 8px;
     border: none;
     border-radius: 8px;
-    background: rgba(0, 30, 60, 0.9);
-    color: #00eaff;
+    background: rgba(30, 0, 60, 0.95);
+    color: #ff6bff;
     cursor: pointer;
     font-size: 0.8rem;
     transition: 0.3s;
-    box-shadow: 0 0 8px rgba(0, 200, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 0, 200, 0.5);
 }
 
 .mini-btn:hover {
-    background: rgba(0, 60, 120, 1);
-    color: #fff;
+    background: rgba(80, 0, 140, 1);
+    color: #ffffff;
 }
 
 /* === SECCIONES === */
@@ -206,15 +206,15 @@ body {
     font-size: 1.3rem;
     font-weight: bold;
     margin-bottom: 20px;
-    color: black;
+    color: #fff0ff;
 }
 
 .coins-text {
-    color: #000000;
+    color: #ffd6ff;
 }
 
 #displayAmount {
-    color: black;
+    color: #ffffff;
 }
 
 /* === CONFETI === */
@@ -238,6 +238,5 @@ body {
 /* === TEXTO DE FELICITACIÓN === */
 .congratu {
     font-size: 130%;
-    color: black;
-
+    color: #ffe6ff;
 }
