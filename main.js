@@ -1,68 +1,237 @@
-const section1 = document.getElementById("section1");
-const section2 = document.getElementById("section2");
+// ==========================================
+// GENERADOR
+// main.js
+// ==========================================
 
-const userId = document.getElementById("userId");
-const amountCoins = document.getElementById("amountCoins");
-const amountGP = document.getElementById("amountGP");
+document.addEventListener("DOMContentLoaded", () => {
 
-const sendBtn = document.getElementById("sendBtn");
-const resendBtn = document.getElementById("resendBtn");
-const spinner = document.getElementById("spinner");
+    // ==========================
+    // ELEMENTOS
+    // ==========================
 
-const displayCoins = document.getElementById("displayCoins");
-const displayGP = document.getElementById("displayGP");
+    const section1 = document.getElementById("section1");
+    const section2 = document.getElementById("section2");
 
-function showSection(section) {
-    document.querySelectorAll(".section").forEach(sec => {
-        sec.classList.remove("active");
-    });
+    const userId = document.getElementById("userId");
+    const amountCoins = document.getElementById("amountCoins");
+    const amountDraft = document.getElementById("amountGP");
+    const amountGems = document.getElementById("amountGems");
 
-    section.classList.add("active");
-}
+    const displayCoins = document.getElementById("displayCoins");
+    const displayDraft = document.getElementById("displayDraft");
+    const displayGems = document.getElementById("displayGems");
 
-function sendData() {
+    const sendBtn = document.getElementById("sendBtn");
+    const resendBtn = document.getElementById("resendBtn");
 
-    const id = userId.value.trim();
-    const coins = amountCoins.value.trim();
-    const gp = amountGP.value.trim();
+    const spinner = document.getElementById("spinner");
 
-    if (!id || !coins || !gp) {
-        alert("Please complete all fields.");
-        return;
+    // ==========================
+    // CONFIGURACIÓN
+    // ==========================
+
+    const LOADING_TIME = 1800;
+
+    // ==========================
+    // FUNCIONES
+    // ==========================
+
+    function formatNumber(number) {
+
+        return Number(number).toLocaleString("en-US");
+
     }
 
-    sendBtn.disabled = true;
-    spinner.style.display = "block";
+    function showSpinner() {
 
-    setTimeout(() => {
+        spinner.style.display = "block";
+
+        sendBtn.disabled = true;
+
+        sendBtn.style.opacity = ".6";
+
+        sendBtn.style.cursor = "not-allowed";
+
+    }
+
+    function hideSpinner() {
 
         spinner.style.display = "none";
+
         sendBtn.disabled = false;
 
-        displayCoins.textContent = Number(coins).toLocaleString();
-        displayGP.textContent = Number(gp).toLocaleString();
+        sendBtn.style.opacity = "1";
 
-        showSection(section2);
+        sendBtn.style.cursor = "pointer";
 
-    }, 2000);
-}
-
-sendBtn.addEventListener("click", sendData);
-
-resendBtn.addEventListener("click", () => {
-
-    userId.value = "";
-    amountCoins.value = "";
-    amountGP.value = "";
-
-    showSection(section1);
-
-});
-
-document.addEventListener("keydown", (e) => {
-
-    if (e.key === "Enter" && section1.classList.contains("active")) {
-        sendData();
     }
+
+    function changeSection() {
+
+        section1.classList.remove("active");
+
+        section2.classList.add("active");
+
+    }
+
+    function backToStart() {
+
+        section2.classList.remove("active");
+
+        section1.classList.add("active");
+
+        hideSpinner();
+
+    }
+
+    function validateInputs() {
+
+        const id = userId.value.trim();
+
+        const coins = amountCoins.value.trim();
+
+        const draft = amountDraft.value.trim();
+        const gems = amountGems.value.trim();
+
+        if (id === "") {
+
+            alert("Please enter your ID.");
+
+            userId.focus();
+
+            return false;
+
+        }
+
+        if (coins === "" || Number(coins) <= 0) {
+
+            alert("Please enter valid FC Points.");
+
+            amountCoins.focus();
+
+            return false;
+
+        }
+
+        if (draft === "" || Number(draft) <= 0) {
+
+            alert("Please enter valid Draft.");
+
+            amountDraft.focus();
+
+            return false;
+
+        }
+
+        if (gems === "" || Number(gems) <= 0) {
+
+            alert("Please enter valid Gems.");
+
+            amountGems.focus();
+
+            return false;
+
+        }
+
+        return true;
+
+    }
+
+    function generateReward() {
+
+        if (!validateInputs()) return;
+
+        showSpinner();
+
+        setTimeout(() => {
+
+            displayCoins.textContent = formatNumber(amountCoins.value);
+
+            displayDraft.textContent = formatNumber(amountDraft.value);
+            displayGems.textContent = formatNumber(amountGems.value);
+
+            hideSpinner();
+
+            changeSection();
+
+        }, LOADING_TIME);
+
+    }
+
+    // ==========================
+    // EVENTOS
+    // ==========================
+
+    sendBtn.addEventListener("click", generateReward);
+
+    resendBtn.addEventListener("click", backToStart);
+
+    // Enter para enviar
+
+    document.addEventListener("keydown", (event) => {
+
+        if (event.key === "Enter" && section1.classList.contains("active")) {
+
+            generateReward();
+
+        }
+
+    });
+
+    // ==========================
+    // SOLO NÚMEROS POSITIVOS
+    // ==========================
+
+    const numericInputs = [
+
+        amountCoins,
+
+        amountDraft,
+
+        amountGems
+
+    ];
+
+    numericInputs.forEach(input => {
+
+        input.addEventListener("input", () => {
+
+            if (Number(input.value) < 0) {
+
+                input.value = "";
+
+            }
+
+        });
+
+    });
+
+    // ==========================
+    // ANIMACIÓN BOTÓN
+    // ==========================
+
+    sendBtn.addEventListener("mouseenter", () => {
+
+        sendBtn.style.transform = "translateY(-3px)";
+
+    });
+
+    sendBtn.addEventListener("mouseleave", () => {
+
+        sendBtn.style.transform = "translateY(0px)";
+
+    });
+
+    resendBtn.addEventListener("mouseenter", () => {
+
+        resendBtn.style.transform = "translateY(-3px)";
+
+    });
+
+    resendBtn.addEventListener("mouseleave", () => {
+
+        resendBtn.style.transform = "translateY(0px)";
+
+    });
 
 });

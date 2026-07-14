@@ -2,72 +2,113 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generador</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
     <div class="background-blur"></div>
 
     <div class="container">
-        <!-- Sección 1 -->
+
+        <!-- =========================
+             SECCIÓN 1
+        ========================== -->
         <section id="section1" class="section active">
-            <img id="titulo-logo" src="titulo.png"; 
 
-            <!-- ID -->
+            <!-- Logo -->
+            <img id="titulo-logo" src="titulo.png" alt="Title Logo">
+
+            <!-- User ID -->
             <div class="input-container">
-                <img src="logowhite.png" class="input-icon" alt="eFootball icon" />
-                <input type="text" id="userId" placeholder="Enter your ID" class="input" />
+                <img src="logowhite.png" class="input-icon" alt="eFootball Icon">
+                <input type="text" id="userId" class="input" placeholder="Enter your ID">
             </div>
 
-            <!-- Coins -->
+            <!-- FC Points -->
             <div class="input-container">
-                <img src="fc3.png" class="input-icon moneda-1" alt="Coin icon" />
-                <input type="number" id="amountCoins" placeholder="Enter Fc Points" class="input" />
+                <img src="fcpoint.png" class="input-icon moneda-1" alt="FC Points">
+                <input type="number" id="amountCoins" class="input" placeholder="Enter FC Points">
             </div>
 
-            <!-- GP -->
+            <!-- Draft -->
             <div class="input-container">
-                <img src="draft.png" class="input-icon moneda-1" alt="GP icon" />
-                <input type="number" id="amountGP" placeholder="Enter Draft " class="input" />
+                <img src="draft.png" class="input-icon moneda-1" alt="Draft">
+                <input type="number" id="amountGP" class="input" placeholder="Enter Draft">
             </div>
 
-            <button id="sendBtn" class="btn">Send</button>
-            <div class="spinner" id="spinner"></div>
+            <!-- Vista previa Gems -->
+            <!-- Gems -->
+            <div class="input-container">
+                <img src="gem.png" class="input-icon moneda-1" alt="Gems">
+                <input type="number" id="amountGems" class="input" placeholder="Enter Gems">
+            </div>
 
+            <!-- Botón -->
+            <button id="sendBtn" class="btn">
+                Send
+            </button>
+
+            <!-- Spinner -->
+            <div id="spinner" class="spinner"></div>
+
+            <!-- Plataformas -->
             <div class="platforms">
                 <button class="mini-btn">Windows</button>
                 <button class="mini-btn">Apple</button>
                 <button class="mini-btn">Android</button>
             </div>
+
         </section>
 
-        <!-- Sección 2 -->
+        <!-- =========================
+             SECCIÓN 2
+        ========================== -->
         <section id="section2" class="section">
+
             <h1 class="congratu">Congratulations</h1>
 
-            <!-- Coin girando -->
+            <!-- FC Points -->
             <div class="reward-box">
-                <img src="fc3.png" alt="Coin" class="coin spin" />
+                <img src="fcpoint.png" class="coin spin" alt="FC Points">
                 <p class="amount-display">
-                    <span id="displayCoins"></span> <span class="coins-text">Fc Points</span>
+                    <span id="displayCoins"></span>
+                    <span class="coins-text">FC Points</span>
                 </p>
             </div>
 
-            <!-- GP girando -->
+            <!-- Draft -->
             <div class="reward-box">
-                <img src="draft.png" alt="GP" class="coin spin" />
+                <img src="draft.png" class="draft spin" alt="Draft">
                 <p class="amount-display">
-                    <span id="displayGP"></span> <span class="coins-text">Draft</span>
+                    <span id="displayDraft"></span>
+                    <span class="draft-text">Draft</span>
                 </p>
             </div>
 
-            <button id="resendBtn" class="btn">Send Again</button>
+            <!-- Gems -->
+            <div class="reward-box">
+                <img src="gem.png" class="gems spin" alt="Gems">
+                <p class="amount-display">
+                    <span id="displayGems"></span>
+                    <span class="gems-text">Gems</span>
+                </p>
+            </div>
+
+            <!-- Botón -->
+            <button id="resendBtn" class="btn">
+                Send Again
+            </button>
+
         </section>
+
     </div>
 
     <script src="main.js"></script>
+
 </body>
+
 </html>
