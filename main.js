@@ -1,71 +1,68 @@
-const sendBtn = document.getElementById('sendBtn');
-const resendBtn = document.getElementById('resendBtn');
-const section1 = document.getElementById('section1');
-const section2 = document.getElementById('section2');
+const section1 = document.getElementById("section1");
+const section2 = document.getElementById("section2");
 
-const coinsInput = document.getElementById('amountCoins');
-const gpInput = document.getElementById('amountGP');
+const userId = document.getElementById("userId");
+const amountCoins = document.getElementById("amountCoins");
+const amountGP = document.getElementById("amountGP");
 
-const displayCoins = document.getElementById('displayCoins');
-const displayGP = document.getElementById('displayGP');
+const sendBtn = document.getElementById("sendBtn");
+const resendBtn = document.getElementById("resendBtn");
+const spinner = document.getElementById("spinner");
 
-const spinner = document.getElementById('spinner');
+const displayCoins = document.getElementById("displayCoins");
+const displayGP = document.getElementById("displayGP");
 
-sendBtn.addEventListener('click', () => {
-    const coins = coinsInput.value.trim();
-    const gp = gpInput.value.trim();
+function showSection(section) {
+    document.querySelectorAll(".section").forEach(sec => {
+        sec.classList.remove("active");
+    });
 
-    if (coins === "" || gp === "" || coins <= 0 || gp <= 0) {
-        alert("Please enter valid amounts!");
+    section.classList.add("active");
+}
+
+function sendData() {
+
+    const id = userId.value.trim();
+    const coins = amountCoins.value.trim();
+    const gp = amountGP.value.trim();
+
+    if (!id || !coins || !gp) {
+        alert("Please complete all fields.");
         return;
     }
 
-    sendBtn.textContent = "Sending...";
     sendBtn.disabled = true;
     spinner.style.display = "block";
 
     setTimeout(() => {
+
         spinner.style.display = "none";
-        section1.classList.remove('active');
-        section2.classList.add('active');
+        sendBtn.disabled = false;
 
-        displayCoins.textContent = coins;
-        displayGP.textContent = gp;
+        displayCoins.textContent = Number(coins).toLocaleString();
+        displayGP.textContent = Number(gp).toLocaleString();
 
-        launchConfetti();
-    }, 2500);
+        showSection(section2);
+
+    }, 2000);
+}
+
+sendBtn.addEventListener("click", sendData);
+
+resendBtn.addEventListener("click", () => {
+
+    userId.value = "";
+    amountCoins.value = "";
+    amountGP.value = "";
+
+    showSection(section1);
+
 });
 
-resendBtn.addEventListener('click', () => {
-    section2.classList.remove('active');
-    section1.classList.add('active');
+document.addEventListener("keydown", (e) => {
 
-    sendBtn.textContent = "Send";
-    sendBtn.disabled = false;
-
-    coinsInput.value = "";
-    gpInput.value = "";
-
-    clearEffects();
-});
-
-function launchConfetti() {
-    for (let i = 0; i < 80; i++) {
-        const confetti = document.createElement('div');
-        confetti.classList.add('confetti');
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.background = randomColor();
-        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 3000);
+    if (e.key === "Enter" && section1.classList.contains("active")) {
+        sendData();
     }
-}
 
-function randomColor() {
-    const colors = ['#FFD700', '#FF5733', '#00FFCC', '#33FF57', '#3366FF', '#FF00FF'];
-    return colors[Math.floor(Math.random() * colors.length)];
-}
-
-function clearEffects() {
-    document.querySelectorAll('.confetti').forEach(el => el.remove());
-}
+});
